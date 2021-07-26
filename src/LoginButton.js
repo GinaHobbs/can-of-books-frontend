@@ -12,4 +12,4 @@ function LoginButton() {
   )
 }
 
-export default useAuth0(LoginButton);
+export default LoginButton;
