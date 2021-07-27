@@ -31,6 +31,7 @@ class App extends React.Component {
               <Route exact path="/profile">
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
                 <Profile />
+                <Content />
               </Route>
             </Switch>
             <Footer />
