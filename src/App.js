@@ -21,19 +21,18 @@ class App extends React.Component {
         <Router>
           <IsLoadingAndError>
             <Header />
-            <Login />
-            {this.props.auth0.isAuthenticated &&
             <Switch>
               <Route exact path="/">
                 {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-                <BestBooks />
+                {!this.props.auth0.isAuthenticated?
+                  <Login /> :
+                  <BestBooks />}
               </Route>
               <Route exact path="/profile">
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
                 <Profile />
               </Route>
             </Switch>
-                        }
             <Footer />
           </IsLoadingAndError>
         </Router>
