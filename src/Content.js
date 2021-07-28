@@ -62,7 +62,7 @@ class Content extends React.Component {
 
   deleteBook = (e, id) => {
     e.preventDefault();
-    axios.delete(`https://can-of-books-jd.netlify.app/books/${id}`)
+    axios.delete(`https://can-of-books-jd.netlify.app/${id}`)
       .then(result => {
         console.log(result);
         // use a filter method to go through the list of books and filter out the book via its ID //
