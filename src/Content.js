@@ -17,7 +17,6 @@ class Content extends React.Component {
       }
     }
 
-
   componentDidMount() {
     if(this.props.auth0.isAuthenticated) {
       this.props.auth0.getIdTokenClaims()
@@ -27,7 +26,8 @@ class Content extends React.Component {
         const config = {
           method: 'get',
           headers: {'Authorization': `Bearer ${jwt}`},
-          baseURL: 'https://can-of-books-jd.netlify.app/',
+          baseURL: 'http://localhost:3000',
+          // baseURL: 'https://can-of-books-jd.netlify.app/',
           url: '/test'
         }
      
@@ -39,7 +39,8 @@ class Content extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://can-of-books-jd.netlify.app/', {name: this.state.name})
+    axios.get('http://localhost:3001/books', {name: this.state.name})
+    // axios.get('https://can-of-books-jd.netlify.app/', {name: this.state.name})
       .then(books => {
         this.setState({ books: books.data })
         console.log('__STATE__', this.state.books)
@@ -48,33 +49,39 @@ class Content extends React.Component {
 
   addBook = (e) => {
     e.preventDefault();
-    axios.post('https://can-of-books-jd.netlify.app/', {name: this.state.name})
+    axios.get('http://localhost:3001/books', {name: this.state.name})
+    // axios.post('https://can-of-books-jd.netlify.app/', {name: this.state.name})
     .then(book => {
       console.log(book.data.name);
       this.setState({ books: [...this.state.books, {name: book.data.name}] })
     })
   }
 
+  
+  deleteBook = (e, id) => {
+    e.preventDefault();
+    axios.delete(`http://localhost:3001/books/${id}`)
+    // axios.delete(`https://can-of-books-jd.netlify.app/${id}`)
+    .then(result => {
+      console.log(result);
+      // use a filter method to go through the list of books and filter out the book via its ID //
+    })
+  }
+  
   updateBookName = (e) => {
     console.log(e.target.value);
     this.setState({ name: e.target.value})
   }
 
-  deleteBook = (e, id) => {
-    e.preventDefault();
-    axios.delete(`https://can-of-books-jd.netlify.app/${id}`)
-      .then(result => {
-        console.log(result);
-        // use a filter method to go through the list of books and filter out the book via its ID //
-      })
-  }
-  
   render() {
  
     return (
       <div>
         <form onSubmit={this.addBook}>
-          <input type='text' name='book' onChange={this.updateBookName} placeholder='book name' />
+          <input type='text' name='book' onChange={this.updateBookName} placeholder='title' />
+          <input type='text' description='' onChange={this.updateBookName} placeholder='description' />
+          <input type='text' author='' onChange={this.updateBookName} placeholder='author' />
+          <input type='text' status='' onChange={this.updateBookName} placeholder='status' />
           <input type='submit' />
         </form>
 
