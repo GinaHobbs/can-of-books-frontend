@@ -13,7 +13,8 @@ class Content extends React.Component {
         user: '',
         email: '',
         description: '',
-        status: ''
+        status: '',
+        img: ''
       }
     }
 
@@ -71,8 +72,8 @@ class Content extends React.Component {
         <form onSubmit={this.addBook}>
           <input type='text' name='book' onChange={this.updateBookName} placeholder='title' />
           <input type='text' description='' onChange={this.updateBookName} placeholder='description' />
-          <input type='text' author='' onChange={this.updateBookName} placeholder='author' />
           <input type='text' status='' onChange={this.updateBookName} placeholder='status' />
+          <input type='text' img='' onChange={this.updateBookName} placeholder='image url' />
           <input type='submit' />
         </form>
 

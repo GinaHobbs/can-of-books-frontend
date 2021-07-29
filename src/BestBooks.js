@@ -21,18 +21,27 @@ class MyFavoriteBooks extends React.Component {
   }
 
   render() {
-    // const {user} = this.props.auth0;
+    // const { user } = this.props.auth0;
     console.log(this.state.bookshelf)
     return(
-      this.state.bookshelf.map(( book, idx) => {
+      this.state.bookshelf.map((bookshelf, idx) => {
         return <Jumbotron key={idx}>
-            <h1>{book.name}</h1>
-            <p>{book.description}</p>
-            <p>{book.status}</p>
-          </Jumbotron>
-      }))
-  }
+          {console.log("bookshelf", bookshelf)}
+       {bookshelf.books.map((book, idx) => {
+         return(
+         <div key={idx}>
+          <h1>{book.name}</h1>
+          <p>
+          {book.description}
+          </p>
+          <p>
+          {book.status}
+          </p>
+        </div>)
+       })}   
+    </Jumbotron>
+  }))
 }
-
+}
 
 export default MyFavoriteBooks;
