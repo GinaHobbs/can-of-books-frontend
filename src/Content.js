@@ -38,15 +38,6 @@ class Content extends React.Component {
     }
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3001/books', {name: this.state.name})
-    // axios.get('https://can-of-books-jd.netlify.app/', {name: this.state.name})
-      .then(books => {
-        this.setState({ books: books.data })
-        console.log('__STATE__', this.state.books)
-      })
-  }
-
   addBook = (e) => {
     e.preventDefault();
     axios.get('http://localhost:3001/books', {name: this.state.name})
@@ -86,10 +77,12 @@ class Content extends React.Component {
         </form>
 
         {this.state.books.map((book, idx) => {
+          return(
           <div key={idx}>
             <div>{book.name}</div>
             <button onClick={this.deleteBook(book._id)}>Delete Book</button>
           </div>
+          )
         })}
       </div>
     )
