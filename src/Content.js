@@ -39,9 +39,9 @@ class Content extends React.Component {
     }
   }
 
-  addBook = (e) => {
+  postBook = (e) => {
     e.preventDefault();
-    axios.get('http://localhost:3001/books', {name: this.state.name})
+    axios.post('http://localhost:3001/books', {name: this.state.name})
     // axios.post('https://can-of-books-jd.netlify.app/', {name: this.state.name})
     .then(book => {
       console.log(book.data.name);
@@ -59,8 +59,10 @@ class Content extends React.Component {
       // use a filter method to go through the list of books and filter out the book via its ID //
     })
   }
+
+
   
-  updateBookName = (e) => {
+  updateBookForm = (e) => {
     console.log(e.target.value);
     this.setState({ name: e.target.value})
   }
@@ -70,10 +72,10 @@ class Content extends React.Component {
     return (
       <div>
         <form onSubmit={this.addBook}>
-          <input type='text' name='book' onChange={this.updateBookName} placeholder='title' />
-          <input type='text' description='' onChange={this.updateBookName} placeholder='description' />
-          <input type='text' status='' onChange={this.updateBookName} placeholder='status' />
-          <input type='text' img='' onChange={this.updateBookName} placeholder='image url' />
+          <input type='text' name='book' onChange={this.updateBookForm} placeholder='title' />
+          <input type='text' description='' onChange={this.updateBookForm} placeholder='description' />
+          <input type='text' status='' onChange={this.updateBookForm} placeholder='status' />
+          <input type='text' img='' onChange={this.updateBookForm} placeholder='image url' />
           <input type='submit' />
         </form>
 

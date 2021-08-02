@@ -7,11 +7,7 @@ class Profile extends React.Component {
  
   render() {
     const { user } = this.props.auth0;
-    console.log(user);
-    console.log(this.props.auth0.getIdTokenClaims());
-    
     return(
-      
       <div>
         <Card style={{width: '18rem' }}>
           <Card.Img variant='top' src={user.picture} />

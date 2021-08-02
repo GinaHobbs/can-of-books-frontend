@@ -20,14 +20,12 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-           
                 {!this.props.auth0.isAuthenticated?
-                  <Login /> :
-                  <BestBooks />}
+                  <Login />: <BestBooks />}
               </Route>
-              <Route exact path="/profile">
 
-              {this.props.auth0.isAuthenticated &&
+              <Route exact path="/profile">
+                {this.props.auth0.isAuthenticated &&
                 <Profile />}
                 <Content />
               </Route>
